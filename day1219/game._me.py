@@ -61,6 +61,7 @@ word = split_words(words)
 # underbar 함수를 따로 지정 길이는 word가 정해짐에 따라 가변적으로 지정
 underbar = ['_'] * len(word) 
 
+
 # 기회는 6번
 chance = 6
 

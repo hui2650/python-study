@@ -127,5 +127,6 @@ label6 = df.loc['철수', '영희']
 math1 = df['수학']
 math_eng = df[['수학', '영어']]
 math_eng = df.loc[:, '수학':'영어']
-
 '''
+
+

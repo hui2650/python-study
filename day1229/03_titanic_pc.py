@@ -44,11 +44,11 @@ print(df1.mean(numeric_only=True))
 # age의 결측치를 age의 평균으로 채우기
 print("\nage의 결측치를 age의 평균으로 채우기")
 
-nall = titanic.copy() # age만 바꿀 새 DataFrame을 만들기 (titanic 원본 유지를 위해)
-nall['age'] = nall['age'].fillna(nall['age'].mean())
+null = titanic.copy() # age만 바꿀 새 DataFrame을 만들기 (titanic 원본 유지를 위해)
+null['age'] = null['age'].fillna(null['age'].mean())
 
-print("age의 평균: ", nall['age'].mean())
-print(nall.head(20))
+print("age의 평균: ", null['age'].mean())
+print(null.head(20))
 
 # deck 컬럼 제거
 print("\ndeck 컬럼 제거")

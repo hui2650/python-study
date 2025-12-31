@@ -63,3 +63,4 @@ print('\n======== period 월별 합계 계산 ========\n')
 
 monthly_sum_pr = df_period.groupby(df_period.index).sum()
 print(monthly_sum_pr.head())
+

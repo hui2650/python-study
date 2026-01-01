@@ -2,7 +2,7 @@ import pandas as pd
 import os as os
 import numpy as np
 
-df = pd.read_csv('./data/seoul_subway_data.csv', encoding="cp949")
+df = pd.read_csv('tsc/data/seoul_subway_data.csv', encoding="cp949")
 
 # 목적 : 각 지하철 역 별 일일 총 승하차승객 분석을 목표
 # 그리고 데이터 분석을 바탕으로 일일 총 승하차승객이 많은 이유를 추론하기 위함

@@ -2,7 +2,7 @@ import pandas as pd
 import os as os
 import numpy as np
 
-df = pd.read_csv('tsc/data/seoul_subway_data.csv', encoding="cp949")
+df = pd.read_csv('./data/subway-data.csv', encoding="cp949")
 
 valid_lines = [f"{i}호선" for i in range(1, 10)]
 df = df[df['호선명'].isin(valid_lines)].copy()

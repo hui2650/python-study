@@ -2,7 +2,7 @@ import pandas as pd
 import os as os
 import numpy as np
 
-df = pd.read_csv('tsc/data/seoul_subway_data.csv', encoding="cp949")
+df = pd.read_csv('./data/subway-data.csv', encoding="cp949")
 
 valid_lines = [f"{i}호선" for i in range(1, 10)]
 df = df[df['호선명'].isin(valid_lines)].copy()
@@ -10,6 +10,10 @@ df = df[df['호선명'].isin(valid_lines)].copy()
 
 
 # 문제 1 (데이터 기본 확인) df의 행/열 개수와 컬럼 개수를 출력하시오.
+
+print('=' * 100)
+print("문제 1")
+print('=' * 100)
 
 print(df.shape)
 print(len(df.columns))
@@ -20,6 +24,11 @@ print(len(df.columns))
 # 힌트: .sum().sum() → 열 → 전체 합
 
 zero_count = (df == 0).sum().sum()
+
+print('=' * 100)
+print("문제 2")
+print('=' * 100)
+
 print(zero_count)
 
 
@@ -33,6 +42,10 @@ counts = df['호선명'].value_counts()
 max_count = counts.max()
 min_count = counts.min()
 
+print('=' * 100)
+print("문제 3")
+print('=' * 100)
+
 print(max_count - min_count)
 
 
@@ -40,6 +53,11 @@ print(max_count - min_count)
 # 문제 4 데이터에 등장하는 지하철역 이름의 종류 개수를 구하시오.
 
 stations = df['지하철역'].value_counts()
+
+print('=' * 100)
+print("문제 4")
+print('=' * 100)
+
 print(len(stations))
 
 
@@ -48,6 +66,11 @@ print(len(stations))
 # 지하철역이 "동대문" 인 데이터만 따로 뽑아 dongdaemun_df를 만들고, 상위 3행을 출력하시오.
 
 dongdaemun_df = df[df['지하철역'] == '동대문']
+
+print('=' * 100)
+print("문제 5")
+print('=' * 100)
+
 print(dongdaemun_df.head(3))
 
 
@@ -56,6 +79,11 @@ print(dongdaemun_df.head(3))
 # 사용월이 202511 인 데이터만 뽑아 df_202511을 만들고, 행 개수를 출력하시오.
 
 df_202511 = df[df['사용월'] == 202511]
+
+print('=' * 100)
+print("문제 6")
+print('=' * 100)
+
 print(len(df_202511))
 
 
@@ -83,6 +111,11 @@ df['총승하차인원'] = df['총승차인원'] + df['총하차인원']
 # 문제 10 총 승하차 인원이 가장 많은 상위 5개 역을 출력하시오.
 
 result10 = df.sort_values('총승하차인원')[['호선명','지하철역','총승하차인원']].tail(5)
+
+print('=' * 100)
+print("문제 10")
+print('=' * 100)
+
 print(result10)
 
 
@@ -112,6 +145,10 @@ df['출근하차'] = (
     df['08시-09시 하차인원']
 )
 
+print('=' * 100)
+print("문제 13")
+print('=' * 100)
+
 print((df['출근승차'] > df['출근하차']).sum())
 
 
@@ -119,6 +156,11 @@ print((df['출근승차'] > df['출근하차']).sum())
 # 문제 14 출근 시간대에 승차 인원이 가장 많은 역 3개를 출력하시오.
 
 result14 = df.sort_values('출근승차')[['호선명','지하철역','출근승차']].tail(3)
+
+print('=' * 100)
+print("문제 14")
+print('=' * 100)
+
 print(result14)
 
 
@@ -126,6 +168,11 @@ print(result14)
 # 문제 15 퇴근 시간대에 하차 인원이 가장 많은 역 3개를 출력하시오.
 
 result15 = df.sort_values('퇴근하차')[['호선명','지하철역','퇴근하차']].tail(3)
+
+print('=' * 100)
+print("문제 15")
+print('=' * 100)
+
 print(result15)
 
 
@@ -157,6 +204,11 @@ df['오전우세'] = df['오전_유동'] - df['오후_유동']
 # 문제 17 오전우세가 큰 역 TOP 5를 출력하시오.
 
 top5_morning = df.sort_values('오전우세')[['호선명','지하철역','오전우세']].tail(5)
+
+print('=' * 100)
+print("문제 17")
+print('=' * 100)
+
 print(top5_morning)
 
 
@@ -181,6 +233,10 @@ morning_cnt = (df['시간성향'] == '오전형').sum()
 evening_cnt = (df['시간성향'] == '오후형').sum()
 mixed_cnt = (df['시간성향'] == '혼합형').sum()
 
+print('=' * 100)
+print("문제 19")
+print('=' * 100)
+
 print("오전형:", morning_cnt)
 print("오후형:", evening_cnt)
 print("혼합형:", mixed_cnt)
@@ -203,6 +259,10 @@ df.loc[df['출근승차'] > df['출근하차'], '역성격'] = '주거지역'
 df.loc[df['출근하차'] > df['출근승차'], '역성격'] = '업무지역'
 df.loc[df['출근승차'] == df['출근하차'], '역성격'] = '혼합지역'
 
+print('=' * 100)
+print("문제 20")
+print('=' * 100)
+
 print(df[['호선명','지하철역','역성격']].head())
 
 
@@ -221,6 +281,11 @@ for line in valid_lines:
     rows.append(tmp[['호선명','지하철역','총승하차인원']])
 
 top_by_line = pd.concat(rows, ignore_index=True)
+
+print('=' * 100)
+print("문제 21")
+print('=' * 100)
+
 print(top_by_line)
 
 
@@ -245,6 +310,10 @@ df['피크시간대'] = np.select(
     default='동률'
 )
 
+print('=' * 100)
+print("문제 22")
+print('=' * 100)
+
 print(df[['호선명','지하철역','피크시간대','피크유동값']].head(10))
 
 
@@ -262,6 +331,10 @@ df['역성격_4분류'] = '일반'
 df.loc[df['출근승차'] >= df['출근하차'] * 1.5, '역성격_4분류'] = '강주거'
 df.loc[df['출근하차'] >= df['출근승차'] * 1.5, '역성격_4분류'] = '강업무'
 df.loc[diff_commute <= total_commute * 0.1, '역성격_4분류'] = '균형형'
+
+print('=' * 100)
+print("문제 23")
+print('=' * 100)
 
 print(df[['호선명','지하철역','출근승차','출근하차','역성격_4분류']].head(10))
 

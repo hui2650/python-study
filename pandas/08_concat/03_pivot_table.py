@@ -30,10 +30,10 @@ print(pdf2)
 print()
 
 
-pdf3 = pd.pivot_table(df,               # 피벗할 데이터프레임
+pdf3 = pd.pivot_table(df,                        # 피벗할 데이터프레임
                       index=['class', 'sex'],    # 행 위치에 들어갈 열
-                      columns='survived',    # 열 위치에 들어갈 열
-                      values=['age', 'fare'],     # 데이터로 사용할 열
+                      columns='survived',        # 열 위치에 들어갈 열
+                      values=['age', 'fare'],    # 데이터로 사용할 열
                       aggfunc=['mean', 'max'],   # 데이터 집계 함수
                       observed=True)
 

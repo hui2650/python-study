@@ -77,13 +77,12 @@ value2 = pd.merge(df1, df2)[pd.merge(df1, df2)['price'] < 50000]
 print(value2)
 print()
 
-sdf3 = pd.DataFrame({'department': ['HR', 'Tech'],
+sdf2 = pd.DataFrame({'department': ['HR', 'Tech'],
                       'manager': ['Tina', 'Alex']})
 
 sdf3 = pd.DataFrame({'department': ['HR', 'HR', 'Tech', 'Tech', 'Finance'],
                       'task': ['recruiting', 'payroll', ]})
 
-# print(sdf1)
-# result_many_to_one = pd.merge(sdf1, sdf3, on='department')
+result_many_to_one = pd.merge(sdf2, sdf3, on='department')
 print(sdf3)
-# print(result_many_to_one)
+print(result_many_to_one)

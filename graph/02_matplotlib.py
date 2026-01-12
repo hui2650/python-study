@@ -117,7 +117,7 @@ plt.annotate('',
              arrowprops=dict(arrowstyle='->', color='skyblue', lw=5),
              )
 plt.annotate('인구 이동 증가(1970-1995)', 
-             xy=(5, 390000), # 화살표 머리
+             xy=(5, 390000),
              fontsize=15,
              rotation=32,
              )
@@ -129,7 +129,7 @@ plt.annotate('',
              arrowprops=dict(arrowstyle='->', color='pink', lw=5)
              )
 plt.annotate('인구 이동 감소(1995-2017)', 
-             xy=(32, 480000), # 화살표 머리
+             xy=(32, 480000),
              fontsize=15,
              rotation=-18,
              )

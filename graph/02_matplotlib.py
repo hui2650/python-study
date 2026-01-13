@@ -32,45 +32,45 @@ sr_one = df_seoul.loc['경기도']
 print(sr_one)
 
 # ===============================================
-# plt.plot(sr_one)
-# plt.show()
+plt.plot(sr_one)
+plt.show()
 
 # 기본 그래프
-# plt.plot(sr_one.index, sr_one.values, linestyle='dotted')
-# plt.title('서울 -> 경기 인구 이동')
-# plt.xlabel('기간')
-# plt.ylabel('이동 인구수')
-# plt.show()
+plt.plot(sr_one.index, sr_one.values, linestyle='dotted')
+plt.title('서울 -> 경기 인구 이동')
+plt.xlabel('기간')
+plt.ylabel('이동 인구수')
+plt.show()
 
 # 기본 그래프2
-# plt.figure(figsize=[14, 7])
-# plt.plot(sr_one.index, sr_one.values, linestyle='dotted')
-# plt.xticks(rotation=90)
-# plt.title('서울 -> 경기 인구 이동')
-# plt.xlabel('기간')
-# plt.ylabel('이동 인구수')
-# plt.legend(labels=['서울 -> 경기'])
-# plt.show()
+plt.figure(figsize=[14, 7])
+plt.plot(sr_one.index, sr_one.values, linestyle='dotted')
+plt.xticks(rotation=90)
+plt.title('서울 -> 경기 인구 이동')
+plt.xlabel('기간')
+plt.ylabel('이동 인구수')
+plt.legend(labels=['서울 -> 경기'])
+plt.show()
 
 # ===============================================
 # plt.style.use('dark_background')
 
 # 스타일 / 마커
-# plt.figure(figsize=[14, 7])
-# plt.plot(sr_one.index, sr_one.values, '-.',
-#         marker='*',
-#         markerfacecolor='slateblue',
-#         markeredgecolor='slateblue',
-#         markeredgewidth=2,
-#         markersize=10,
-#         color='gold',
-#         )
-# plt.xticks(rotation='vertical', size=10)
-# plt.title('서울 -> 경기 인구 이동')
-# plt.xlabel('기간', size=20)
-# plt.ylabel('이동 인구수', size=20)
-# plt.legend(labels=['서울 -> 경기'])
-# plt.show()
+plt.figure(figsize=[14, 7])
+plt.plot(sr_one.index, sr_one.values, '-.',
+        marker='*',
+        markerfacecolor='slateblue',
+        markeredgecolor='slateblue',
+        markeredgewidth=2,
+        markersize=10,
+        color='gold',
+        )
+plt.xticks(rotation='vertical', size=10)
+plt.title('서울 -> 경기 인구 이동')
+plt.xlabel('기간', size=20)
+plt.ylabel('이동 인구수', size=20)
+plt.legend(labels=['서울 -> 경기'])
+plt.show()
 
 # bmh ggplot dark_background . . .
 
@@ -135,3 +135,80 @@ plt.annotate('인구 이동 감소(1995-2017)',
              )
 
 plt.show()
+
+
+# ===============================================
+
+samsung_revenue = pd.read_csv('data/삼성전자_분기별_매출액.csv')
+samsung_revenue.sort_values(by='quarter', inplace=True)
+print(samsung_revenue)
+print()
+
+# 그래프 1개 그려보기
+# fig, ax = plt.subplots(figsize=(8, 2))
+# ax.plot(samsung_revenue['quarter'], samsung_revenue['value'])
+
+# ax.annotate('테스트', 
+#              xy=(1, 6.5e13), # 2023-Q3 가능 
+#              )
+# plt.show()
+
+# 그래프 2개 그려보기
+# fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+# # 2차원이 아니기 때문에 axes[0,0] 이 아닌 [0]으로
+# axes[0].plot(samsung_revenue['quarter'], samsung_revenue['value'])
+# samsung_revenue['value'].plot(ax=axes[1], marker='<')
+
+# plt.show()
+
+#subplot_moasic 방법
+
+# 같은 이름 = 하나의 축
+# 연속으로 붙어 있으면 병합
+
+fig, axes = plt.subplot_mosaic([['top_left', 'right'], 
+                                ['bottom_left', 'right'], # 'right' ← 위아래로 합쳐진 큰 영역 (세로로 2칸 병합)
+                                ['a', 'a']], # 맨 아래 가로로 긴 영역 (가로로 2칸 병합)
+                                figsize=(12, 4))
+axes['right'].plot(samsung_revenue['quarter'], samsung_revenue['value'])
+plt.show()
+
+
+'''
+import matplotlib.pyplot as plt
+
+plt.plot() - 디폴트가 선그래프일뿐.
+
+plt.plot(시리즈)    x축 - 인덱스  y축 - 밸류
+plt.show()
+
+plt.plot(x축자료, y축자료)
+plt.show()
+
+plt.plot(데이터프레임) x축 - 인덱스  y축 - 밸류
+데이터.plot()  -- 판다스에서 제공하는 형태인데 (내부적으로는 matplotlib)
+
+plt.figure(figsize=(10,8))
+plt.plot(x축, y축, marker='o', color='magenta', label='충청도')
+경기도데이터.plot(디자인을 합니다.)
+
+plt.title('인구이동')
+plt.xlabel('년도')
+plt.ylabel('이동인구')
+plt.legend() --- 범례
+plt.show()
+
+fig, axes = subplots(2, 2, figsize=(12, 8))
+axes[0, 0].plot(x, y, 디자인)
+axes[0, 1]
+axes[1, 0]
+axes[1, 1]
+
+axes[0,0].set_title('디자인')
+.
+.
+.
+
+plt.show()
+'''

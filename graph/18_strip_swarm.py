@@ -10,6 +10,7 @@ fig, axes = plt.subplots(1, 2, figsize=(15, 5))
 sns.stripplot(x='class',
               y='age',
               data=titanic,
+              hue='class',
               ax=axes[0])
 
 sns.swarmplot(x='class',
@@ -23,3 +24,4 @@ axes[0].set_title('Strip Plot')
 axes[1].set_title('Swarm Plot')
 
 plt.show()
+

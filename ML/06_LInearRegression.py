@@ -77,17 +77,23 @@ lr = LinearRegression()
 # 모델 훈련
 lr.fit(train_input, train_target)
 print('\n======= lr 모델 훈련 완료 =======\n')
-# y = aX = b
+# y = aX + b
 
 print('\n======= 선형회귀 - 50센티 농어 무게 예측 =======\n')
 print(lr.predict([[50]]))
 
 print('\n======= 파라미터 값 확인 =======\n')
 print(lr.coef_, lr.intercept_)
-# a = 39.0, b = -714.3
+# lr.coef_ = a = 직선의 기울기
+# lr.intercept_ = b = 절편
+
+# a = 39.0, b = -709.0
+# 즉, 길이가 1 늘 때마다 무게가 평균적으로 39g 늘어나는 형태로 학습됨
 
 plt.scatter(train_input, train_target)
-plt.plot([15, 50], [15*lr.coef_+lr.intercept_, 50*lr.coef_+lr.intercept_])
+# x = 15일때, y / x = 50일때 y
+# 두 점을 찍어서 직선을 연결한것
+plt.plot([15, 50], [15*lr.coef_ + lr.intercept_, 50*lr.coef_ + lr.intercept_])
 plt.scatter(50, 1241.9, marker='^')
 plt.xlabel('length')
 plt.ylabel('weight')
@@ -113,7 +119,7 @@ lrp.fit(train_poly, train_target)
 print('\n====== 2제곱 모델 훈련 완료 ======\n')
 
 print('\n====== 다형회귀 - 50짜리 농어 예측 ======\n')
-print(lrp.predict([[50*2, 50]]))
+print(lrp.predict([[50**2, 50]]))
 
 print('\n====== 웨이트(가중치), 바이어스(편향) ======\n')
 print('가중치: ', lrp.coef_, '\n편향: ', lrp.intercept_)
@@ -128,4 +134,14 @@ plt.plot(point, 1.01*point**2 - 21.6*point + 116.05)
 plt.scatter([50], [1574], marker='^')
 plt.show()
 
+# 더 정확한 방식
+'''
+point = np.arange(15, 50).reshape(-1, 1)
+point_poly = np.column_stack((point**2, point))
+pred = lrp.predict(point_poly)
 
+plt.scatter(train_input, train_target)
+plt.plot(point, pred)
+plt.scatter([50], lrp.predict([[50**2, 50]]), marker='^')
+plt.show()
+'''

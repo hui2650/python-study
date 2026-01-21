@@ -56,7 +56,7 @@ print('\n====== get_feature_names_out() ======\n')
 print(poly.get_feature_names_out())
 
 # 테스트 데이터도 특성공학 적용
-test_poly = poly.fit_transform(test_input)
+test_poly = poly.transform(test_input)
 
 # 선행회귀 학습
 from sklearn.linear_model import LinearRegression
@@ -80,6 +80,11 @@ print('\n====== 5제곱 특성공학 shape ======\n')
 print(train_poly.shape)
 
 # 학습
-lr.fit(train_poly, train_target)
+lr.fit(trans_poly, train_target)
 
 # 스코어
+print(lr.score(trans_poly, train_target))
+print(lr.score(test_poly, test_target))
+
+print('\n====== 파라미터 값 확인 ======\n')
+print(lr.coef_, lr.intercept_)

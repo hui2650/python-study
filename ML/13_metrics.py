@@ -1,6 +1,7 @@
 from sklearn.datasets import load_breast_cancer
 import pandas as pd
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 
 # 데이터 로드
 data = load_breast_cancer()
@@ -84,10 +85,10 @@ print(classification_report(y_test, y_pred, digits=4))
 
 '''
 양성 - 암환자, 스팸메일
-TP (진짜 양성): 암환자를 잘 찾아냄                   / 스팸 메일 잘 걸러냄
-FN (가짜 음성): 암환자인데 아니라고 분류 (놓침)       / 스팸인데 아니라고 분류
-FP (가짜 양성): 암환자 아닌데 맞다고 분류 (오해)      / 스팸 아닌데 스팸으로 분류
-TN (진짜 음성): 아닌 사람 아닌 걸로 분류             / 스팸 아닌거 아닌걸로 분류
+TP (진짜 악성): 암환자를 잘 찾아냄                   / 스팸 메일 잘 걸러냄
+FN (가짜 양성): 암환자인데 아니라고 분류 (놓침)       / 스팸인데 아니라고 분류
+FP (가짜 악성): 암환자 아닌데 맞다고 분류 (오해)      / 스팸 아닌데 스팸으로 분류
+TN (진짜 양성): 아닌 사람 아닌 걸로 분류             / 스팸 아닌거 아닌걸로 분류
 
 Confusion Matrix
 [[70  2]    TN  FP
@@ -147,4 +148,34 @@ Classfication Report
    macro avg     0.9275    0.9028    0.9128       114
 weighted avg     0.9227    0.9211    0.9199       114
 
+====================================================================
+
+f1-score - precision과 recall의 조화평균 (특징: 둘다 높아야 높게 나온다)
+하나라도 낮으면 점수가 늦게나옴. 둘다 낮아도 낮게 나옴
+
+support - 해당 클래스의 실제 샘플 개수 (데이터 분포 확인용)
+
+accuracy - 전체 샘플 중에서 맞춘 비율 (정확도)
+
+marco avg
+클래스별 지표(precision과, recall, f1)를 단순 평균
+클래스별 비율이 불균형일 때 '클래스마다 동일한 중요도'를 줌
+
+weighted avg
+클래스별 지표를 support(샘플수)로 가중 평균
+데이터 분포를 반영해서 평균 내므로 accuracy와 비슷한 경향
+
 '''
+
+
+# ROC 곡선
+# 모든 가능한 임계점들을 넣어보면서, 재현율, 위 양성률을 계산하여 그래프로 그림
+# AUC = ROC 곡선 아래 면적 (1에 가까울수록 좋음)
+
+RocCurveDisplay.from_predictions(y_test, y_pred)
+plt.title('ROC  Curve LogisticRegression')
+plt.show()
+
+
+
+

@@ -58,9 +58,15 @@ fit, transform, score, predict, reshape ...
     - SGDClassifier - 분류
     - SGDRegressor - 예측
 
-    
-=============================================================================================
+< SVM > 서포트벡터 머신
+    SVC ( 분류 ) - 클래스 간의 마진을 최대화하는 선을 찾는다.
+                  중/소 규모 데이터, 고차원 데이터에 강함
+                  커널트릭으로 비선형 데이터 분류 가능
+                  비교적 경계가 확실한 데이터에 쓰면 좋음
 
+    SVR ( 회귀 ) - 예측 함수 구간에 엡실론 만큼의 허용 오차 구간 생성
+
+=============================================================================================
 
 ===============
 || 데이터 분할 ||
@@ -100,4 +106,18 @@ fit, transform, score, predict, reshape ...
     분류 - 맞춘 개수 / 테스트 개수
     예측 - R^2 (결졍계수)
     
+=============
+|| Metrics || 
+=============
+
+    여러가지 성능 평가지표
+
+- 분류 - accuracy_score, precisin_score, recall_score, f1_score, roc_auc_score
+            정확도            정밀도          재현율      조화평균      auc 면적     
+
+        confusion_metrix, classification_report
+        재현율 vs 위양성율
+
+- 회귀 - mean_absolute_error,  mean_squared_error, r2_score, score
+
 '''

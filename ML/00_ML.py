@@ -120,4 +120,19 @@ fit, transform, score, predict, reshape ...
 
 - 회귀 - mean_absolute_error,  mean_squared_error, r2_score, score
 
+===============
+|| Tree-계열 || 
+===============
+
+    DecisionTree - 노드를 분할하며 데이터 분류
+        - DecisionTreeClassifier - 지니불순도가 가장 작아지는 임계값(분할 조건) 선택, 분류된 노드의 샘플들의 클래스 다수결로 결정
+        - DecisionTreeRegressor  -> 분류된 노드의 샘플들의 평균으로 결정
+
+    RandomForest - 결정나무 100개의 숲, 부트스트랩 샘플링, 랜덤 특성 선택
+        - 단일 결정 나무보다 랜덤성을 추가하여 일반화 성능 높임
+
+    ExtraTrees - 결정나무 100개의 숲, 랜덤 특성 선택
+
+
+
 '''

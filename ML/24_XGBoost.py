@@ -85,7 +85,13 @@ print(classification_report(y_test, pred, digits=4))
 
 # 특성 중요도 확인
 print('\n========== [Confusion Report] ==========\n')
-
+print(pd.Series(xgb.feature_importances_, index=X.columns).sort_values(ascending=False))
+'''
+특성 중요도
+sugar      0.605737
+pH         0.201377
+alcohol    0.192886
+'''
 
 # ===================
 # 5) ROC Curve 그리기
@@ -98,5 +104,11 @@ RocCurveDisplay.from_predictions(y_test, proba)
 plt.title('XGBoost ROC Curve')
 plt.show()
 
+'''
+학습 속도/알고리즘: tree_method (exact/approx/hist)
+모델 복잡도: max_depth, min_child_weight, gamma
+랜덤화로 일반화: subsample, colsample_bytree
+정규화: reg_alpha(L1), reg_lambda(L2)
+'''
 
 
